@@ -1,0 +1,51 @@
+<div class="container">
+<div id="view-content">
+
+	<ol class="breadcrumb">
+	  <li><a href="<?php echo $this->baseUrl() ?>">Home</a></li>
+	  <li class="active">Cart</li>
+	</ol>
+
+	<?php if ($this->cartItems): ?>
+
+		<div class="panel panel-default">
+		
+		<div class="panel-heading"><h4>Shopping Cart (<?php echo count($this->cartItems) ?>)</h4></div>
+
+		<table class="table">
+        <thead>
+          <tr>
+            <th>Product</th>
+            <th>Quantity</th>
+            <th>Price</th>
+            <th>&nbsp;</th>
+          </tr>
+        </thead>
+        <tbody>
+        <?php foreach($this->cartItems as $key => $cartItem): ?>
+          <tr>
+            <td><?php echo $cartItem['name'] ?></td>
+            <td><?php echo $cartItem['quantity'] ?></td>
+            <td><?php echo $cartItem['price'] ?> &euro;</td>
+            <td><a href="<?php echo $this->baseUrl() ?>/cart/remove/?id=<?php echo $key ?>" class="btn btn-danger" title="Remove from the cart">X</a></td>
+          </tr>
+         <?php endforeach; ?>
+         <tr>
+         	<td colspan="5">
+         	<p><strong>Total: <?php echo $this->amount ?> &euro;</strong></p>
+   				<p><a href="<?php echo $this->baseUrl() ?>/cart/empty/" class="btn btn-danger" title="Continue shopping">Remove all items &raquo;</a></p>
+    			<p><a href="<?php echo $this->baseUrl() ?>/" class="btn btn-default" title="Continue shopping">Continue shopping &raquo;</a></p>
+         	</td>
+         </tr>
+        </tbody>
+      </table>
+    </div>
+
+	<?php else: ?>
+		<div><h3>The cart is empty</h3></div>
+		
+		<p><a href="<?php echo $this->baseUrl() ?>/" class="btn btn-primary" title="Continue shopping">Continue shopping &raquo;</a></p>
+	<?php endif; ?>
+	
+</div>
+</div>

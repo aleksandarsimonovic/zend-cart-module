@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Zend Cart</title>
+
+    <!-- Bootstrap Core CSS -->
+    <?php echo $this->headLink()->appendStylesheet('/vendor/bootstrap/css/bootstrap.min.css') ?>
+
+
+    <!-- Theme CSS -->
+    <?php echo $this->headLink()->appendStylesheet('/css/clean-blog.min.css') ?>
+
+
+    <!-- Custom Fonts -->
+    <?php echo $this->headLink()->appendStylesheet('/vendor/font-awesome/css/font-awesome.min.css') ?>
+    <?php echo $this->headLink()->appendStylesheet('https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic') ?>
+    <?php echo $this->headLink()->appendStylesheet('https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800') ?>
+
+
+</head>
+
+<body>
+
+
+<?php echo $this->placeholder('carousel'); ?>
+
+<!-- Modal OK -->
+<div class="modal fade" id="addtocartok" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel">Cart</h4>
+            </div>
+            <div class="modal-body">
+                <div class="alert alert-success">
+                    <h3>Added to cart</h3>
+                    <p>The product is now on the shopping cart</p>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Continue shopping</button>
+                <a href="<?php echo $this->baseUrl() ?>/cart/" class="btn btn-primary"><i
+                            class="fa fa-shopping-cart"></i> View Cart</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Error -->
+
+
+<?php echo $this->placeholder('menu'); ?>
+
+
+<!-- Add to cart response -->
+<div id="response"></div>
+
+<?php echo $this->layout()->content; ?>
+
+
+<?php echo $this->placeholder('footer'); ?>
+
+
+<!-- jQuery -->
+<?php $this->headScript()->appendFile('/js/jquery.form.js'); ?>
+<script src="<?php echo $this->baseUrl() ?>/js/jquery.min.js"></script>
+<!-- Bootstrap Core JavaScript -->
+<?php $this->headScript()->appendFile('/vendor/bootstrap/js/bootstrap.min.js'); ?>
+<!-- Contact Form JavaScript -->
+<?php $this->headScript()->appendFile('/js/jqBootstrapValidation.js'); ?>
+<?php $this->headScript()->appendFile('/js/contact_me.js'); ?>
+<!-- Theme JavaScript -->
+<?php $this->headScript()->appendFile('/js/clean-blog.min.js'); ?>
+<script>
+    $(document).ready(function () {
+        var options = {
+            target: '#response',
+            beforeSubmit: showRequest,
+            success: showResponse
+        };
+
+        $('.formproduct').submit(function () {
+            $(this).ajaxSubmit(options);
+            return false;
+        });
+
+        $('#cartsummary').load("<?php echo $this->baseUrl() ?>/cart/summary/", function () {
+            window.setInterval("loadCartSummary", 60000);
+        });
+    });
+
+    function showRequest(formData, jqForm, options) {
+
+        var queryString = $.param(formData);
+
+        return true;
+    }
+
+    function showResponse(responseText, statusText, xhr, $form) {
+
+    }
+
+    function loadCartSummary() {
+        $('#cartsummary').load("<?php echo $this->baseUrl() ?>/cart/summary/");
+    }
+</script>
+<?php echo $this->headScript() ?>
+</body>
+</html>

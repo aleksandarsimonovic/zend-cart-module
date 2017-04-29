@@ -1,0 +1,8 @@
+<script>
+	<?php if ($this->itemAddedOK): ?>
+	loadCartSummary();
+	$('#addtocartok').modal('show');
+	<?php else: ?>
+	$('#addtocartko').modal('show');
+	<?php endif; ?>
+</script>

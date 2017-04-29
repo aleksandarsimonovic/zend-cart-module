@@ -1,0 +1,13 @@
+<div class="panel panel-default">
+	<?php if ( $this->cartItems ): ?>	
+	<div class="panel-heading"><i class="fa fa-shopping-cart"></i> Your Cart</div>
+	<div class="panel-body">
+		<div><strong>Items:</strong> <?php echo count($this->cartItems) ?></div>
+	<?php else: ?>
+	<div class="panel-heading"><i class="fa fa-shopping-cart"></i> Your Cart</div>
+	<div class="panel-body">
+		<p>The cart is empty.</p>
+	</div>
+	<?php endif; ?>
+	</div>
+</div>

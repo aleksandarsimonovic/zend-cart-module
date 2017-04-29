@@ -1,0 +1,96 @@
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12 col-sm-9">
+
+            <?php if ($this->product): ?>
+                <ol class="breadcrumb">
+                    <li><a href="<?php echo $this->url(array('controller' => 'index', 'action' => 'index'), NULL, true); ?>">Home</a></li>
+                    <li class="active"><?php echo $this->product['name'] ?></li>
+                </ol>
+
+                <h3><?php echo $this->product['name'] ?></h3>
+                <div class="row">
+                    <div class="col-md-4"><img
+                                src="<?php echo $this->baseUrl() ?>/images/product-images/<?php echo $this->product['image'] ?>"
+                                alt=""></div>
+                    <div class="col-md-8">
+
+
+                        <h4><strong><?php echo $this->product['price'] ?> &euro;</strong><br><br></h4>
+
+
+                        <form id="p<?php echo $this->product['id'] ?>" name="p<?php echo $this->product['id'] ?>"
+                              action="<?php echo $this->baseUrl() ?>/cart/addtocart/" method="post" class="formproduct">
+                            <p>
+                                <input type="hidden" name="id" value="<?php echo $this->product['id'] ?>">
+                                <button type="submit" class="btn btn-primary" href="javascript:void(0)" role="button"><i
+                                            class="fa fa-shopping-cart"></i> Add to cart &raquo;
+                                </button>
+                            </p>
+                        </form>
+
+
+                        <a href="<?php echo $this->baseUrl() ?>/" class="btn btn-default" title="Back to shopping">Back
+                            to shopping &raquo;</a>
+
+                        <br><br>
+                        
+
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+                                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion"
+                                       href="#collapseTwo">Product specification</a>
+                                </h4>
+                            </div>
+                            <div id="collapseTwo" class="panel-collapse collapse">
+                                <div class="panel-body">
+                                    <div><?php echo htmlspecialchars_decode($this->product['description']) ?><br><br>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+                                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion"
+                                       href="#collapseOne">Product reviews</a>
+                                </h4>
+                            </div>
+                            <div id="collapseOne" class="panel-collapse collapse">
+                                <div class="panel-body">
+                                    <div id="disqus_thread"></div>
+                                    <script>
+
+
+                                        (function () {
+                                            var d = document, s = d.createElement('script');
+                                            s.src = '//wt-cms.disqus.com/embed.js';
+                                            s.setAttribute('data-timestamp', +new Date());
+                                            (d.head || d.body).appendChild(s);
+                                        })();
+                                    </script>
+                                    <noscript>Please enable JavaScript to view the <a
+                                                href="https://disqus.com/?ref_noscript">comments powered
+                                            by Disqus.</a></noscript>
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+            <?php else: ?>
+                <div>
+                    <h3>Product not available</h3>
+                    <p>Product details are not available. The product doesn't exist or there was some error selecting
+                        data.</p>
+                </div>
+            <?php endif; ?>
+        </div>
+
+        <?php echo $this->partial('sidebar.phtml') ?>
+    </div>
+</div>

@@ -1,0 +1,25 @@
+<?php
+
+if (isset($this->first)) {
+    echo '<a class="btn btn-default" href="' . $this->url(array('page' => $this->first)) . '"> First </a>';
+} else {
+    echo ' << ';
+}
+
+echo '<a class="btn btn-default" href="' . $this->url(array('page' => $this->previous)) . '"> Previous </a>';
+
+foreach ($this->pagesInRange as $page) {
+    if ($this->current != $page) {
+        echo '<a class="btn btn-default" href="' . $this->url(array('page' => $page)) . '">' . $page . '</a>';
+    } else {
+        echo '<a class="btn btn-default">' . $page . '</a>';
+    }
+}
+
+echo '<a class="btn btn-default" href="' . $this->url(array('page' => $this->next)) . '"> Next </a>';
+
+if (isset($this->last)) {
+    echo '<a class="btn btn-default" href="' . $this->url(array('page' => $this->last)) . '"> Last </a>';
+} else {
+    echo ' >> ';
+}

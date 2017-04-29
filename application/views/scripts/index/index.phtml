@@ -1,0 +1,49 @@
+<div class="container">
+    <ol class="breadcrumb">
+        <li>
+            <a href="<?php echo $this->url(array('controller' => 'index', 'action' => 'index'), NULL, true); ?>">Home</a>
+        </li>
+        <li class="active">Shop</li>
+    </ol>
+    <div class="col-xs-12 col-sm-9">
+
+
+        <?php if ($this->paginator): ?>
+            <h3>Our products</h3>
+            <div class="row">
+                <?php foreach ($this->paginator as $product): ?>
+                    <form id="p<?php echo $product['id'] ?>" name="p<?php echo $product['id'] ?>"
+                          action="<?php echo $this->baseUrl() ?>/cart/addtocart/" method="post" class="formproduct">
+                        <div class="col-6 col-sm-6 col-lg-4" style="margin-bottom: 2%">
+                            <p>
+                                <a href="<?php echo $this->baseUrl() ?>/index/details/?id=<?php echo $product['id'] ?>"><img
+                                            src="<?php echo $this->baseUrl() ?>/images/product-images/<?php echo $product['image'] ?>"
+                                            alt="<?php echo $product['name'] ?>"></a></p>
+                            <h3><a href="<?php echo $this->baseUrl() ?>/index/details/?id=<?php echo $product['id'] ?>"
+                                   title="<?php echo $product['name'] ?>"><?php echo $product['name'] ?></a></h3>
+                            <p><?php // echo $product['description'] ?></p>
+                            <p><?php echo $product['price'] ?>&euro;</p>
+                            <p><input type="hidden" name="id" value="<?php echo $product['id'] ?>">
+                                <button type="submit" class="btn btn-primary" href="javascript:void(0)" role="button"><i
+                                            class="fa fa-shopping-cart"></i> Add to cart &raquo;
+                                </button>
+                            </p>
+                        </div>
+                    </form>
+                <?php endforeach; ?>
+            </div>
+            <hr>
+            <?php echo $this->paginator; ?>
+
+        <?php else: ?>
+            <h1>Under construction</h1>
+            <p>There are no products on our store. Please come back later!</p>
+        <?php endif; ?>
+
+    </div>
+
+    <!-- Sidebar -->
+    <?php echo $this->partial('sidebar.phtml') ?>
+
+</div>
+

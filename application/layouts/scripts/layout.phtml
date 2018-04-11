@@ -12,17 +12,17 @@
     <title>Zend Cart</title>
 
     <!-- Bootstrap Core CSS -->
-    <?php echo $this->headLink()->appendStylesheet('/vendor/bootstrap/css/bootstrap.min.css') ?>
+    <?php echo $this->headLink()->appendStylesheet($this->baseUrl('/vendor/bootstrap/css/bootstrap.min.css')) ?>
 
 
     <!-- Theme CSS -->
-    <?php echo $this->headLink()->appendStylesheet('/css/clean-blog.min.css') ?>
+    <?php echo $this->headLink()->appendStylesheet($this->baseUrl('/css/clean-blog.min.css')) ?>
 
 
     <!-- Custom Fonts -->
-    <?php echo $this->headLink()->appendStylesheet('/vendor/font-awesome/css/font-awesome.min.css') ?>
-    <?php echo $this->headLink()->appendStylesheet('https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic') ?>
-    <?php echo $this->headLink()->appendStylesheet('https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800') ?>
+    <?php echo $this->headLink()->appendStylesheet($this->baseUrl('/vendor/font-awesome/css/font-awesome.min.css')) ?>
+    <?php echo $this->headLink()->appendStylesheet($this->baseUrl('https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic')) ?>
+    <?php echo $this->headLink()->appendStylesheet($this->baseUrl('https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800')) ?>
 
 
 </head>
@@ -49,14 +49,13 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Continue shopping</button>
-                <a href="<?php echo $this->baseUrl() ?>/cart/" class="btn btn-primary"><i
+                <a href="<?php echo $this->url(array('controller' => 'cart', 'action' => 'index'), NULL, true); ?>" class="btn btn-primary"><i
                             class="fa fa-shopping-cart"></i> View Cart</a>
             </div>
         </div>
     </div>
 </div>
 
-<!-- Modal Error -->
 
 
 <?php echo $this->placeholder('menu'); ?>
@@ -72,15 +71,16 @@
 
 
 <!-- jQuery -->
-<?php $this->headScript()->appendFile('/js/jquery.form.js'); ?>
-<script src="<?php echo $this->baseUrl() ?>/js/jquery.min.js"></script>
+<?php $this->headScript()->appendFile($this->baseUrl('/js/jquery.form.js')); ?>
+<?php $this->headScript()->appendFile($this->baseUrl('/js/jquery.min.js')); ?>
+
 <!-- Bootstrap Core JavaScript -->
-<?php $this->headScript()->appendFile('/vendor/bootstrap/js/bootstrap.min.js'); ?>
+<?php $this->headScript()->appendFile($this->baseUrl('/vendor/bootstrap/js/bootstrap.min.js')); ?>
 <!-- Contact Form JavaScript -->
-<?php $this->headScript()->appendFile('/js/jqBootstrapValidation.js'); ?>
-<?php $this->headScript()->appendFile('/js/contact_me.js'); ?>
+<?php $this->headScript()->appendFile($this->baseUrl('/js/jqBootstrapValidation.js')); ?>
+<?php $this->headScript()->appendFile($this->baseUrl('/js/contact_me.js')); ?>
 <!-- Theme JavaScript -->
-<?php $this->headScript()->appendFile('/js/clean-blog.min.js'); ?>
+<?php $this->headScript()->appendFile($this->baseUrl('/js/clean-blog.min.js')); ?>
 <script>
     $(document).ready(function () {
         var options = {

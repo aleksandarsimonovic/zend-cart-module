@@ -1,6 +1,6 @@
 <?php
 
-//ob_start('compressHTMLOutput');
+ini_set("display_errors", E_ALL);
 
 // Define path to application directory
 defined('APPLICATION_PATH')
@@ -16,6 +16,10 @@ set_include_path(implode(PATH_SEPARATOR, array(
     get_include_path(),
 )));
 
+require_once('Zend/Loader/Autoloader.php');
+$autoloader = Zend_Loader_Autoloader::getInstance();
+$autoloader->setFallbackAutoloader(true);
+
 /** Zend_Application */
 require_once 'Zend/Application.php';
 
@@ -25,46 +29,5 @@ $application = new Zend_Application(
     APPLICATION_PATH . '/configs/application.ini'
 );
 
-try {
-	$db = Zend_Db::factory('Pdo_Mysql',  array(
-			'host'     => '127.0.0.1',
-			'username' => 'root',
-			'password' => '',
-			'dbname'   => 'zf1-shopcart'
-	));
-	$db->getConnection();
-} catch (Zend_Db_Adapter_Exception $e) {
-	?>
-	<!DOCTYPE html>
-	<html>
-		<head>
-			<title>Database Connection Error</title>
-		</head>
-		<body>
-			<h3>Error connecting database</h3>
-			<p>One of these errors has occurred:</p>
-			<ul>
-				<li>Database is down</li>
-				<li>Wrong connection string to the database</li>				
-			</ul>
-		</body>
-	</html>
-	<?php
-	exit;
-} catch (Zend_Exception $e) {
-	echo "loading db adapter failed :("; exit;
-}
-
 $application->bootstrap()
             ->run();
-
-/* compress HTML output */
-// ob_end_flush();
-function compressHTMLOutput($buffer)
-{
-	$bufferout = $buffer;
-	$bufferout = str_replace("\n", "", $bufferout);
-	$bufferout = str_replace("\t", "", $bufferout);
-	$bufferout = preg_replace('/<!--(.|\s)*?-->/', '', $bufferout);
-	return $bufferout;
-}

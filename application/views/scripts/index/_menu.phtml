@@ -17,7 +17,7 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="<?php echo $this->baseUrl() ?>/cart/" title="Go to the shopping cart"><i
+                <li><a href="<?php echo $this->url(array('controller' => 'cart', 'action' => 'index'), NULL, true); ?>" title="Go to the shopping cart"><i
                                 class="fa fa-shopping-cart"></i> Cart</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
